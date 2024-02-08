@@ -1,0 +1,34 @@
+dl {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 16px;
+}
+
+dt, dd {
+    padding: 8px;
+    border-bottom: 1px solid #ccc;
+    margin: 0;
+}
+
+dt {
+    font-weight: bold;
+}
+
+.dialog-tournament-form {
+    display: flex;
+    justify-content: end;
+    align-content: end;
+    margin: 20px;
+}
+
+.dialog-team-form {
+    display: flex;
+    justify-content: first baseline;
+    align-content: baseline;
+    margin: 20px;
+}
+
+button {
+    width: 100px;
+    height: 35px;
+}

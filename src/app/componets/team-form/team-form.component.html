@@ -1,0 +1,59 @@
+<div class="card">
+    <div class="card-header">
+        @if (this.team) {
+            Editar equipo
+        } @else {
+            Crear equipo
+        }
+    </div>
+    <div class="card-body">
+        @if (formTeam) {
+        <form [formGroup]="formTeam">
+            <div class="form-group">
+                <label for="name">Nombre:</label>
+                <input id="name" type="text" name="name" class="form-control" placeholder="Nombre"
+                    formControlName="name"
+                    [class.is-invalid]="formTeam.get('name')?.errors && formTeam.get('name')?.touched"
+                    maxlength="30">
+                @if (formTeam.get('name')?.hasError('required') && formTeam.get('name')?.touched) {
+                <span class="text-danger">Campo obligatorio.</span>
+                }
+            </div>
+
+            <div class="form-group">
+                <label for="email">Correo:</label>
+                <input id="email" type="text" name="email" class="form-control" placeholder="Correo"
+                    formControlName="email"
+                    [class.is-invalid]="formTeam.get('email')?.errors && formTeam.get('email')?.touched"
+                    maxlength="50">
+                @if (formTeam.get('email')?.hasError('required') && formTeam.get('email')?.touched) {
+                <span class="text-danger">Campo obligatorio.</span>
+                }
+                @if (formTeam.get('email')?.hasError('email') && formTeam.get('email')?.touched) {
+                <span class="text-danger">Correo invalido.</span>
+                }
+            </div>
+
+            <div class="form-group">
+                <label for="description">Correo:</label>
+                <textarea id="description" type="text" name="description" class="form-control" placeholder="Descripcion"
+                    formControlName="description"
+                    [class.is-invalid]="formTeam.get('description')?.errors && formTeam.get('description')?.touched"
+                    maxlength="100">
+                </textarea>
+                @if (formTeam.get('description')?.hasError('required') && formTeam.get('description')?.touched) {
+                <span class="text-danger">Campo obligatorio.</span>
+                }
+            </div>
+        </form>
+        }
+    </div>
+    <div class="card-footer">
+        @if (this.team) {
+            <button type="submit" class="btn btn-info" (click)="updateTeam()">Editar</button>
+        } @else {
+            <button type="submit" class="btn btn-primary" (click)="updateTeam()">Crear</button>
+        }
+        <button type="button" class="btn btn-secondary" (click)="closeTeamForm()">Cancelar</button>
+    </div>
+</div>

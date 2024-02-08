@@ -1,0 +1,20 @@
+<div class="tournament-card">
+    <div class="tournament-header">
+        <strong>{{ tournament.name }}</strong>
+    </div>
+
+    <div class="date-start">
+        <h5 class="date-label">Inicio: </h5>
+        <p>{{ tournament.startDate | date:'dd/MM/yyyy' }}</p>
+    </div>
+
+    <div class="date-finish">
+        <h5 class="date-label">Fin: </h5>
+        <p>{{ tournament.finishDate | date:'dd/MM/yyyy' }}</p>
+    </div>
+
+    <div class="sport-icon">
+        <img src="assets/icons/{{ tournament.sport?.name | lowercase }}.svg"
+            alt="{{ tournament.sport?.name }}" width="auto" height="50px">
+    </div>
+</div>

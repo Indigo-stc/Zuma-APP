@@ -1,0 +1,24 @@
+.card {
+    width: auto;
+    height: fit-content;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: center;
+}
+
+.card-footer button {
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 100px;
+    height: 35px;
+}
+
+.card-body label {
+    margin-bottom: 5px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}

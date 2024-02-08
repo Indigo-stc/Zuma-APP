@@ -1,0 +1,30 @@
+<main>
+    <div class="row">
+        <div class="col-md-6">
+            <input type="text" class="form-control" placeholder="Search" aria-label="Buscar">
+        </div>
+        <div class="col-md-6">
+            <div class="dialog-team-form">
+              <button class="btn btn-success" (click)="openTeamForm()">Crear</button>
+            </div>
+          </div>
+    </div>
+
+    <div class="card-group">
+        @if (teams) {
+            @for (team of teams; track $index) {
+                <div class="card">
+                    <app-team-card [team]="team"/>
+                    <div class="card-footer">
+                        <button type="button" class="btn btn-warning" (click)="getRoster(team)">Plantilla</button>
+                        @if (team.active) {
+                            <button type="button" class="btn btn-danger" (click)="updateActive(team)">Eliminar</button>
+                        } @else {
+                           <button type="button" class="btn btn-success" (click)="updateActive(team)">Activar</button> 
+                        }
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</main>

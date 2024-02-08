@@ -1,0 +1,14 @@
+main {
+  margin: 30px;
+}
+
+.team-info {
+  display: flex;
+  justify-content: left;
+  margin-bottom: 30px;
+}
+
+.dialog-team-form {
+  display: flex;
+  margin-bottom: 20px;
+}

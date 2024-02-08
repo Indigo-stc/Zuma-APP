@@ -1,0 +1,47 @@
+<main>
+    <section class="team-info">
+        <div class="card">
+            @if (team) {
+                <div class="card-body">
+                    <app-team-card [team]="team!" />
+                </div>
+                <div class="card-footer">
+                    <button type="button" class="btn btn-warning" (click)="openDialogUpdateTeam()">Editar</button>
+                </div>
+            }
+        </div>
+    </section>
+
+    <section class="team-roster">
+        <div class="dialog-team-form">
+            <button type="button" class="btn btn-primary" (click)="openDialogCreatePlayer()">Agregar</button>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Edad</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Telefono</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (roster) {
+                    @for (ros of roster; track $index) {
+                    <tr>
+                        <td>{{ros.player?.name}} {{ros.player?.surname}}</td>
+                        <td>{{ageCalculator(ros.player!)}}</td>
+                        <td>{{ros.player?.email}}</td>
+                        <td>{{ros.player?.phone}}</td>
+                    </tr>
+                    }
+                }
+            </tbody>
+        </table>
+
+    </section>
+
+
+
+</main>

@@ -1,0 +1,74 @@
+<div class="card">
+    <div class="card-header">
+        @if (this.tournament) {
+        Editar equipo
+        } @else {
+        Crear equipo
+        }
+    </div>
+    <div class="card-body">
+        @if (this.formTournament) {
+        <form [formGroup]="formTournament">
+            <div class="form-group">
+                <label for="name">Nombre:</label>
+                <input id="name" type="text" name="name" class="form-control" placeholder="Nombre"
+                    formControlName="name"
+                    [class.is-invalid]="formTournament.get('name')?.errors && formTournament.get('name')?.touched"
+                    maxlength="40">
+                @if (formTournament.get('name')?.hasError('required') && formTournament.get('name')?.touched) {
+                <span class="text-danger">Campo obligatorio.</span>
+                }
+            </div>
+
+            <div class="form-group">
+                <label for="startDate">Fecha de inicio:</label>
+                <input id="startDate" type="date" name="startDate" class="form-control" formControlName="startDate"
+                    [class.is-invalid]="formTournament.get('startDate')?.errors && formTournament.get('startDate')?.touched">
+                @if (formTournament.get('startDate')?.hasError('required') && formTournament.get('startDate')?.touched)
+                {
+                <span class="text-danger">Campo obligatorio.</span>
+                }
+                <!-- @if (formTournament.get('startDate')?.hasError('birthDateGreater')) {
+                        <span class="text-danger">La fecha de nacimiento debe ser menor a la fecha actual.</span>
+                    } -->
+            </div>
+
+            <div class="form-group">
+                <label for="finishDate">Fecha de fin:</label>
+                <input id="finishDate" type="date" name="finishDate" class="form-control" formControlName="finishDate"
+                    [class.is-invalid]="formTournament.get('finishDate')?.errors && formTournament.get('finishDate')?.touched">
+                @if (formTournament.get('finishDate')?.hasError('required') &&
+                formTournament.get('finishDate')?.touched) {
+                <span class="text-danger">Campo obligatorio.</span>
+                }
+                <!-- @if (formTournament.get('finishDate')?.hasError('birthDateGreater')) {
+                        <span class="text-danger">La fecha de nacimiento debe ser menor a la fecha actual.</span>
+                    } -->
+            </div>
+
+            <div class="form-group">
+                <mat-form-field>
+                    <mat-label for="sport">Seleccione un deporte</mat-label>
+                    <mat-select formControlName="sport" required="">
+                        @for (sport of sports; track sport) {
+                        <mat-option [value]="sport">{{sport.name}}</mat-option>
+                        }
+                    </mat-select>
+                    @if (formTournament.get('sport')?.hasError('required') && formTournament.get('sport')?.touched) {
+                        <mat-error>Please choose an animal</mat-error>
+                      }
+                </mat-form-field>
+            </div>
+        </form>
+        }
+    </div>
+
+    <div class="card-footer">
+        @if (this.tournament) {
+        <button type="submit" class="btn btn-info" (click)="updateTournament()">Editar</button>
+        } @else {
+        <button type="submit" class="btn btn-primary" (click)="updateTournament()">Crear</button>
+        }
+        <button type="button" class="btn btn-secondary" (click)="this.dialogRef.close(false)">Cancelar</button>
+    </div>
+</div>
