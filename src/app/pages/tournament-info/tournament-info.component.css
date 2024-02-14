@@ -21,13 +21,6 @@ dt {
     margin: 20px;
 }
 
-.dialog-team-form {
-    display: flex;
-    justify-content: first baseline;
-    align-content: baseline;
-    margin: 20px;
-}
-
 button {
     width: 100px;
     height: 35px;

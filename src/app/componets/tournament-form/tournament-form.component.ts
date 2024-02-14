@@ -53,7 +53,7 @@ export class TournamentFormComponent implements OnInit {
 
   startForm(tournament: Tournament): FormGroup {
     return this.fb.group({
-      name: [tournament.name ?? '', [Validators.required, Validators.maxLength(30)]],
+      name: [tournament.name ?? '', [Validators.required, Validators.maxLength(40)]],
       startDate: [tournament.startDate ?? '', [Validators.required]],
       finishDate: [tournament.finishDate ?? '', [Validators.required]],
       sport: [tournament.sport ?? '', Validators.required]
@@ -64,7 +64,6 @@ export class TournamentFormComponent implements OnInit {
     this._sportService.getAll().subscribe({
       next: (data) => {
         this.sports = data;
-        console.log(this.sports);
       },
       error: (error) => {
         
@@ -76,6 +75,17 @@ export class TournamentFormComponent implements OnInit {
     if(this.formTournament?.invalid) {
       this.markAllFieldsAsTouched();
       return
+    }
+
+    if(this.tournament) {
+      const tournament = this.formTournament?.value;
+      tournament.id = this.tournament.id;
+      this._tournamentService.update(tournament.id, tournament).subscribe({
+        next: (data) => {
+          this.dialogRef.close(true);
+        }
+      })
+      return;
     }
 
     if(!this.tournament) {

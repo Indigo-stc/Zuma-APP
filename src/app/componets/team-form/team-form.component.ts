@@ -72,7 +72,6 @@ export class TeamFormComponent implements OnInit {
       this._teamsService.create(team).subscribe({
         next: response => {
           this.dialogRef.close(true);
-          console.log(response);
         }
       })
     } else {

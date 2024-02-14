@@ -7,11 +7,12 @@ import { ActivatedRoute } from '@angular/router';
 import { Enrolment } from '../../shared/models/enrolment';
 import { Tournament } from '../../shared/models/tournament';
 import { CommonModule } from '@angular/common';
+import { TournamentFormComponent } from '../../componets/tournament-form/tournament-form.component';
 
 @Component({
   selector: 'app-tournament-info',
   standalone: true,
-  imports: [TournamentInfoComponent, TournamentCardComponent, CommonModule],
+  imports: [TournamentInfoComponent, TournamentCardComponent],
   templateUrl: './tournament-info.component.html',
   styleUrl: './tournament-info.component.css'
 })
@@ -48,7 +49,6 @@ export class TournamentInfoComponent implements OnInit {
     this._tournamentService?.getById(id).subscribe({
       next: response => {
         this.tournament = response
-        console.log(response)
       },
       error: error => {
         console.log("sadasdasdas")
@@ -58,7 +58,16 @@ export class TournamentInfoComponent implements OnInit {
   }
 
   openDialogUpdateTournament() {
-    throw new Error('Method not implemented.');
+    const tournament = this.tournament
+    const dialogRef = this.dialog.open(TournamentFormComponent, {
+      data: { tournament }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.getTournament(this.id!);
+      }
+    });
   }
 
 }

@@ -2,21 +2,18 @@
     <section class="tournament-info">
         <dl>
             @if (tournament) {
-                <dt>ID:</dt>
-                <dd>{{ tournament.id }}</dd>
-    
                 <dt>Name:</dt>
                 <dd>{{ tournament.name }}</dd>
     
                 <dt>Start Date:</dt>
-                <dd>{{ tournament.startDate | date:'medium' }}</dd>
+                <dd>{{ tournament.startDate }}</dd>
     
                 <dt>Finish Date:</dt>
-                <dd>{{ tournament.finishDate | date:'medium' }}</dd>
+                <dd>{{ tournament.finishDate }}</dd>
     
                 <dt>Sport:</dt>
                 <dd>{{ tournament.sport?.name }}</dd>
-                }
+            }
         </dl>
         <div class="dialog-tournament-form">
             <button class="btn btn-warning" (click)="openDialogUpdateTournament()">Editar</button>
@@ -28,27 +25,22 @@
             <button type="button" class="btn btn-primary">Agregar</button>
         </div>
 
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Edad</th>
-                    <th scope="col">Correo</th>
-                    <th scope="col">Telefono</th>
-                </tr>
+        <div class="table-responsive">
+            <table class="table table-striped ">
+            <thead class="">
+                <th [width]="'10%'">N.</th>
+                <th>Nombre</th>
             </thead>
             <tbody>
-                @if (enrolments) {
-                @for (enrol of enrolments; track $index) {
-                <tr>
-                    <td>{{enrol.team?.name}}</td>
-                    <td>{{enrol.team?.email}}</td>
-                </tr>
-                }
+                @for (enrolment of enrolments; track enrolment) {
+                    <tr>{{ $index }}</tr>
+                    <tr>{{ enrolment.team?.name }}</tr>
                 }
             </tbody>
         </table>
+        </div>
 
+        
     </section>
 
 
